@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>success</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        a {
+            padding: 2px;
+            display: block;
+            float:left;
+            background-color: #ddd;
+            width: 100px;
+            height:100px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <a onclick="success()" href="javascript:void">成功</a>
+</body>
+<script>
+    function success() {
+        var url = window.location.href;
+        var href = url.substring(0, url.lastIndexOf("/"));
+        $.get(href + "/open/cs/success?key=qwert67890_%2B", function(res) {
+            alert(res);
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/foundation_dev?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+      username: root
+      password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+knife4j:
+  enable: true
+
+system:
+  local-store:
+    path: /data/upload/dev
+  login:
+    index: /ap-dev

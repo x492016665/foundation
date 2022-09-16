@@ -1,0 +1,5 @@
+from=xxxx@163.com
+host=smtp.163.com
+pass=123
+auth=true
+debug=true

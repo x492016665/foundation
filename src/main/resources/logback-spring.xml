@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration scan="true" scanPeriod="3 seconds">
+    <property name="LOG_HOME" value="/data/log/springboot/quotation"/>
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <property name="layout" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%X{ip}][%X{session.uid}][%X{req.id}][%X{req.requestURI}] %logger - %msg%n" />
+
+    <!--设置日志输出为控制台-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>${layout}</Pattern>
+        </encoder>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server-dev" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/dev/quotation-server.log</File>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/dev/quotation-server.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server-dev-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/dev/quotation-server-error.log</File>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+        <!-- 过滤掉 TRACE 、 DEBUG 、 WARN、INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/dev/quotation-server-error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server-uat" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/uat/quotation-server.log</File>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/uat/quotation-server.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server-uat-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/uat/quotation-server-error.log</File>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+        <!-- 过滤掉 TRACE 、 DEBUG 、 WARN、INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/uat/quotation-server-error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/quotation-server.log</File>
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%X{id}] [%X{requestId}] %logger - %msg%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/quotation-server.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--设置日志输出为文件-->
+    <appender name="quotation-server-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}/quotation-server-error.log</File>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+        <!-- 过滤掉 TRACE 、 DEBUG 、 WARN、INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/quotation-server-error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="org" level="INFO"/>
+    <logger name="springfox" level="INFO"/>
+    <logger name="io.lettuce" level="INFO" />
+    <logger name="io.netty" level="INFO" />
+    <!--不显示mybatisplus扫描xml的debug日志-->
+    <logger name="com.baomidou.mybatisplus.extension.spring" level="INFO"/>
+    <!--不显示Validator的debug日志-->
+    <logger name="Validator" level="INFO"/>
+    <!--记录sql日志-->
+    <logger name="com.pf.dao.mapper" level="DEBUG" />
+
+    <!-- 开发环境 -->
+    <springProfile name="dev | local">
+        <!-- level: FATAL,ERROR,WARN,INFO,DEBUG,TRACE -->
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="quotation-server-dev"/>
+            <appender-ref ref="quotation-server-dev-error"/>
+        </root>
+    </springProfile>
+
+    <!-- 测试环境 -->
+    <springProfile name="uat">
+        <!-- level: FATAL,ERROR,WARN,INFO,DEBUG,TRACE -->
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="quotation-server-uat"/>
+            <appender-ref ref="quotation-server-uat-error"/>
+        </root>
+    </springProfile>
+
+    <!-- 正式环境 -->
+    <springProfile name="prd">
+        <logger name="org" level="INFO"/>
+        <!-- level: FATAL,ERROR,WARN,INFO,DEBUG,TRACE -->
+        <root level="INFO">
+            <appender-ref ref="quotation-server"/>
+            <appender-ref ref="quotation-server-error"/>
+        </root>
+    </springProfile>
+
+</configuration>
