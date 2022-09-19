@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.AccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.Account" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="LOGIN_NAME" property="loginName" />
+        <result column="LOGIN_PWD" property="loginPwd" />
+        <result column="ACCOUNT_STATUS" property="accountStatus" />
+        <result column="ACCOUNT_TYPE" property="accountType" />
+        <result column="ACCOUNT_CLASS" property="accountClass" />
+        <result column="SRC_ID" property="srcId" />
+        <result column="FILE_ID" property="fileId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.LOGIN_NAME,
+        A.LOGIN_PWD,
+        A.ACCOUNT_STATUS,
+        A.ACCOUNT_TYPE,
+        A.ACCOUNT_CLASS,
+        A.SRC_ID,
+        A.FILE_ID,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
