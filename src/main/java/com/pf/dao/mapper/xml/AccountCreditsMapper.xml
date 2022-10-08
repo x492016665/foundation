@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.AccountCreditsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.AccountCredits" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="CREDITS" property="credits" />
+        <result column="CREDITS_ACTION" property="creditsAction" />
+        <result column="ACTION_ID" property="actionId" />
+        <result column="ACTION_TIME" property="actionTime" />
+        <result column="ACTION_TYPE" property="actionType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.ACCOUNT_ID,
+        A.CREDITS,
+        A.CREDITS_ACTION,
+        A.ACTION_ID,
+        A.ACTION_TIME,
+        A.ACTION_TYPE,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>

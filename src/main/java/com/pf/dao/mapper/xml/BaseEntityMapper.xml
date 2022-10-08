@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.BaseEntityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.BaseEntity">
+        <result column="id" property="id"/>
+        <result column="record_status" property="recordStatus" jdbcType="TINYINT" javaType="int"/>
+        <result column="create_sys_tm" property="createSysTm" jdbcType="TIMESTAMP" javaType="date"/>
+        <result column="update_sys_tm" property="updateSysTm" jdbcType="TIMESTAMP" javaType="date"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.ID,
+        A.RECORD_STATUS,
+        A.CREATE_SYS_TM,
+        A.UPDATE_SYS_TM
+    </sql>
+
+    <sql id="PAGE_SQL">
+        LIMIT #{qry.start, jdbcType=INTEGER},
+        <choose>
+            <when test="qry.size == null || qry.size == ''">10</when>
+            <otherwise>#{qry.size, jdbcType=INTEGER}</otherwise>
+        </choose>
+    </sql>
+
+</mapper>
