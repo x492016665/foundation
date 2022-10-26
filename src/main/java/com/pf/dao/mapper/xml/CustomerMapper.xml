@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.CustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.Customer" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="USER_NAME" property="userName" />
+        <result column="COMPANY_ID" property="companyId" />
+        <result column="COMPANY_NAME" property="companyName" />
+        <result column="GENDER" property="gender" />
+        <result column="TEL" property="tel" />
+        <result column="EMAIL" property="email" />
+        <result column="ADDRESS" property="address" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="DISCODE" property="discode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.USER_NAME,
+        A.COMPANY_ID,
+        A.COMPANY_NAME,
+        A.GENDER,
+        A.TEL,
+        A.EMAIL,
+        A.ADDRESS,
+        A.ACCOUNT_ID,
+        A.DISCODE,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>

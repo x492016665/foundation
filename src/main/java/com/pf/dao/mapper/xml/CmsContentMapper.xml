@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.CmsContentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.CmsContent" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="TITLE" property="title" />
+        <result column="CONTENT" property="content" />
+        <result column="INTRO" property="intro" />
+        <result column="VIEW_COUNT" property="viewCount" />
+        <result column="USER_ID" property="userId" />
+        <result column="CONTENT_CLASSIFY" property="contentClassify" />
+        <result column="CONTENT_STATUS" property="contentStatus" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="PUB_TIME" property="pubTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.TITLE,
+        A.CONTENT,
+        A.INTRO,
+        A.VIEW_COUNT,
+        A.USER_ID,
+        A.CONTENT_CLASSIFY,
+        A.CONTENT_STATUS,
+        A.CREATE_TIME,
+        A.PUB_TIME,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>

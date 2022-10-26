@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.DistrictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.District" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="DIS_CODE" property="disCode" />
+        <result column="NAME" property="name" />
+        <result column="DIS_HIERARCHICAL" property="disHierarchical" />
+        <result column="PARENT_DIS_CODE" property="parentDisCode" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.DIS_CODE,
+        A.NAME,
+        A.DIS_HIERARCHICAL,
+        A.PARENT_DIS_CODE,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>

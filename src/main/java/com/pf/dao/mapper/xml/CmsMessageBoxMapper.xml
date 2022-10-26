@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.CmsMessageBoxMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.CmsMessageBox" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="CONTENT_ID" property="contentId" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="OPEN_READ" property="openRead" />
+        <result column="READ_TIME" property="readTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.CONTENT_ID,
+        A.ACCOUNT_ID,
+        A.OPEN_READ,
+        A.READ_TIME,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>

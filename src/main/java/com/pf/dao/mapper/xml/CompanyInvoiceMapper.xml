@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.CompanyInvoiceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.CompanyInvoice" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="CUSTOMER_ID" property="customerId" />
+        <result column="COMPANY_ID" property="companyId" />
+        <result column="NAME" property="name" />
+        <result column="DUTY_PARAGRAPH" property="dutyParagraph" />
+        <result column="INVOICE_TYPE" property="invoiceType" />
+        <result column="ADDRESS" property="address" />
+        <result column="TEL" property="tel" />
+        <result column="BANK" property="bank" />
+        <result column="BANK_ACCOUNT" property="bankAccount" />
+        <result column="CONTACT_PERSON" property="contactPerson" />
+        <result column="CONTACT_TEL" property="contactTel" />
+        <result column="MAIL_ADDRESS" property="mailAddress" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.CUSTOMER_ID,
+        A.COMPANY_ID,
+        A.NAME,
+        A.DUTY_PARAGRAPH,
+        A.INVOICE_TYPE,
+        A.ADDRESS,
+        A.TEL,
+        A.BANK,
+        A.BANK_ACCOUNT,
+        A.CONTACT_PERSON,
+        A.CONTACT_TEL,
+        A.MAIL_ADDRESS,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
