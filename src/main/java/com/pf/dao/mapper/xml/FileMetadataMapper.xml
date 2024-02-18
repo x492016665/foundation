@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.FileMetadataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.FileMetadata" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="MD5" property="md5" />
+        <result column="SHA1" property="sha1" />
+        <result column="NAME" property="name" />
+        <result column="FILE_SIZE" property="fileSize" />
+        <result column="FILE_CLASSIFY" property="fileClassify" />
+        <result column="PATH" property="path" />
+        <result column="SUFFIX" property="suffix" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.MD5,
+        A.SHA1,
+        A.NAME,
+        A.FILE_SIZE,
+        A.FILE_CLASSIFY,
+        A.PATH,
+        A.SUFFIX,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
