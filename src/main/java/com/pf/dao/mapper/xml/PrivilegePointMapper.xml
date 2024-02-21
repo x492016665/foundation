@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.PrivilegePointMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.PrivilegePoint" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="NAME" property="name" />
+        <result column="PRIVILEGE_CODE" property="privilegeCode" />
+        <result column="FRONT_CODE" property="frontCode" />
+        <result column="SOURCE_PATH" property="sourcePath" />
+        <result column="PARENT_CODE" property="parentCode" />
+        <result column="PRIVILEGE_CLASSIFY" property="privilegeClassify" />
+        <result column="HIERARCHICAL" property="hierarchical" />
+        <result column="SHOW_ORDER" property="showOrder" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.NAME,
+        A.PRIVILEGE_CODE,
+        A.FRONT_CODE,
+        A.SOURCE_PATH,
+        A.PARENT_CODE,
+        A.PRIVILEGE_CLASSIFY,
+        A.HIERARCHICAL,
+        A.SHOW_ORDER,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
