@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.ScheduleRemindMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.ScheduleRemind" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="USER_ID" property="userId" />
+        <result column="QUOTATION_ID" property="quotationId" />
+        <result column="QUOTATION_CODE" property="quotationCode" />
+        <result column="DISPATCH_ID" property="dispatchId" />
+        <result column="DISPATCH_CODE" property="dispatchCode" />
+        <result column="CONTEXT" property="context" />
+        <result column="SCHEDULE_TYPE" property="scheduleType" />
+        <result column="SCHEDULE_STATUS" property="scheduleStatus" />
+        <result column="DATE_TIME" property="dateTime" />
+        <result column="PROCESS_TIME" property="processTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.USER_ID,
+        A.QUOTATION_ID,
+        A.QUOTATION_CODE,
+        A.DISPATCH_ID,
+        A.DISPATCH_CODE,
+        A.CONTEXT,
+        A.SCHEDULE_TYPE,
+        A.SCHEDULE_STATUS,
+        A.DATE_TIME,
+        A.PROCESS_TIME,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
