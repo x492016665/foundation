@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.SystemParamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.SystemParam" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="PARAM_CLASSIFY" property="paramClassify" />
+        <result column="PARAM_KEY" property="paramKey" />
+        <result column="PARAM_VALUE" property="paramValue" />
+        <result column="REMARK" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.PARAM_CLASSIFY,
+        A.PARAM_KEY,
+        A.PARAM_VALUE,
+        A.REMARK,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
