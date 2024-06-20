@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.UserHolidayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.UserHoliday" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="USER_ID" property="userId" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="DAYS" property="days" />
+        <result column="HOLIDAY_STATUS" property="holidayStatus" />
+        <result column="APPLY_TIME" property="applyTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.USER_ID,
+        A.START_DATE,
+        A.END_DATE,
+        A.DAYS,
+        A.HOLIDAY_STATUS,
+        A.APPLY_TIME,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
