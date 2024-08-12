@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.User" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="USER_NAME" property="userName" />
+        <result column="TEL" property="tel" />
+        <result column="USER_STATUS" property="userStatus" />
+        <result column="DISCODE" property="discode" />
+        <result column="LABEL" property="label" />
+        <result column="ACCOUNT_ID" property="accountId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.USER_NAME,
+        A.TEL,
+        A.USER_STATUS,
+        A.DISCODE,
+        A.LABEL,
+        A.ACCOUNT_ID,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+
+    <select id="adminCount" resultType="long">
+        SELECT COUNT(*)
+            FROM T_USER A
+        WHERE EXISTS (SELECT T.ID FROM t_user_role T
+            WHERE T.USER_ID = A.ID
+            <foreach collection="ars" separator="," item="rid" open="AND T.ROLE_ID IN(" close=")">
+                #{rid}
+            </foreach>
+        )
+        <where>
+            <if test="qry.userName != null">
+                AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="adminPage" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+            FROM T_USER A
+        WHERE EXISTS (
+            SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID
+            <foreach collection="ars" separator="," item="rid" open="AND T.ROLE_ID IN(" close=")">
+                #{rid}
+            </foreach>
+        )
+        <where>
+            <if test="qry.userName != null">
+                AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+            </if>
+        </where>
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.PAGE_SQL" />
+    </select>
+
+    <select id="userPage" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+            FROM T_USER A
+        WHERE A.RECORD_STATUS = 1
+        AND NOT EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{superAdminId})
+        <if test="qry.userName != null and qry.userName !='' ">
+            AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+        </if>
+        <if test="qry.roleId != null">
+            AND EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{qry.roleId} AND T.RECORD_STATUS = 1)
+        </if>
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.PAGE_SQL" />
+    </select>
+
+    <select id="userCount" resultType="long">
+        SELECT COUNT(*)
+            FROM T_USER A
+        WHERE A.RECORD_STATUS = 1
+        AND NOT EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{superAdminId})
+        <if test="qry.userName != null and qry.userName !='' ">
+            AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+        </if>
+        <if test="qry.roleId != null">
+            AND EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{qry.roleId} AND T.RECORD_STATUS = 1)
+        </if>
+    </select>
+
+    <select id="engineerPage" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+            FROM T_USER A
+        WHERE A.RECORD_STATUS = 1
+        AND EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{enginnerId})
+        <if test="qry.userName != null and qry.userName !='' ">
+            AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+        </if>
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.PAGE_SQL" />
+    </select>
+
+    <select id="engineerCount" resultType="long">
+        SELECT COUNT(*)
+            FROM T_USER A
+        WHERE A.RECORD_STATUS = 1
+        AND EXISTS (SELECT T.ID FROM T_USER_ROLE T WHERE T.USER_ID = A.ID AND T.ROLE_ID = #{enginnerId})
+        <if test="qry.userName != null and qry.userName !='' ">
+            AND A.USER_NAME = #{qry.userName, jdbcType=VARCHAR}
+        </if>
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.PAGE_SQL" />
+    </select>
+</mapper>
