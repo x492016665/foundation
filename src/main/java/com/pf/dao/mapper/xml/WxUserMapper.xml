@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pf.dao.mapper.WxUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pf.dao.entity.WxUser" extends="com.pf.dao.mapper.BaseEntityMapper.BaseResultMap">
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="TEL" property="tel" />
+        <result column="UNION_ID" property="unionId" />
+        <result column="MA_OPEN_ID" property="maOpenId" />
+        <result column="MP_OPEN_ID" property="mpOpenId" />
+        <result column="SUBSCRIBE" property="subscribe" />
+        <result column="LANGUAGE" property="language" />
+        <result column="SUBSCRIBE_TIME" property="subscribeTime" />
+        <result column="REMARK" property="remark" />
+        <result column="GROUPID" property="groupid" />
+        <result column="TAG_IDS" property="tagIds" />
+        <result column="PRIVILEGES" property="privileges" />
+        <result column="SUBSCRIBE_SCENE" property="subscribeScene" />
+        <result column="QR_SCENE" property="qrScene" />
+        <result column="QR_SCENE_STR" property="qrSceneStr" />
+        <result column="SUBSCRIBE_STATUS_TIME" property="subscribeStatusTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        A.ACCOUNT_ID,
+        A.TEL,
+        A.UNION_ID,
+        A.MA_OPEN_ID,
+        A.MP_OPEN_ID,
+        A.SUBSCRIBE,
+        A.LANGUAGE,
+        A.SUBSCRIBE_TIME,
+        A.REMARK,
+        A.GROUPID,
+        A.TAG_IDS,
+        A.PRIVILEGES,
+        A.SUBSCRIBE_SCENE,
+        A.QR_SCENE,
+        A.QR_SCENE_STR,
+        A.SUBSCRIBE_STATUS_TIME,
+        <include refid="com.pf.dao.mapper.BaseEntityMapper.Base_Column_List" />
+    </sql>
+</mapper>
